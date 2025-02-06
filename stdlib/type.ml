@@ -32,7 +32,12 @@ module Id = struct
     (module struct type t = a type _ id += Id : t id end)
 
   let[@inline] uid (type a) ((module A) : a t) =
-    Obj.Extension_constructor.id (Obj.Extension_constructor.of_val A.Id)
+    (* [A.Id] is statically known to be a nullary extension variant, and hence
+       is its own extension constructor.
+
+       Don't go through [Obj.Extension_constructor.of_val] as it performs
+       expensive checks. *)
+    Obj.Extension_constructor.id (Obj.magic A.Id : extension_constructor)
 
   let provably_equal
       (type a b) ((module A) : a t) ((module B) : b t) : (a, b) eq option
