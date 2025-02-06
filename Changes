@@ -157,7 +157,7 @@ Working version
   (Josh Berdine, review by Gabriel Scherer)
 
 - #15049: Do not use Obj.Extension_constructor.of_val in Type.Id
-  (Basile Clément, review by ???)
+  (Basile Clément, review by Vincent Laviron)
 
 ### Other libraries:
 
